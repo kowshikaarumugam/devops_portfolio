@@ -13,18 +13,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v5
       with:
         python-version: '3.9'
 
     - name: Install dependencies
       run: |
-        pip install flask flake8 pytest
+        pip install flask flake8
 
-    - name: Lint code (check for errors)
+    - name: Lint code
       run: |
         flake8 app.py --max-line-length=100
         echo "Code quality check passed!"
@@ -44,12 +44,11 @@ jobs:
     needs: test
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: Build Docker image
       run: |
         docker build -t devops-portfolio:latest .
-        docker build -t devops-portfolio:${{ github.run_number }} .
         echo "Docker build successful!"
 
     - name: Test Docker container
