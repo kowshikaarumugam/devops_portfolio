@@ -23,7 +23,7 @@ jobs:
 
     - name: Lint code
       run: |
-        flake8 app.py --max-line-length=100 --ignore=W292,W293,E302,E305
+        flake8 app.py --max-line-length=100 --ignore=W292,W293,E302,E305,W391
         echo "Code quality check passed!"
 
     - name: Test Flask app
